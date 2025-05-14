@@ -49,6 +49,7 @@ public class TicTacToe : MonoBehaviour
         {
             gameButtons[i].interactable = true;
             gameButtons[i].GetComponentInChildren<TMP_Text>().text = "";
+            gameButtons[i].GetComponentInChildren<TMP_Text>().color = new Color(0.2f, 0.2f, 0.2f);
             squareValues[i] = 0;
         }
 
@@ -62,6 +63,8 @@ public class TicTacToe : MonoBehaviour
 
     void EndGame()
     {
+        UpdateWinSquares();
+
         foreach (var button in gameButtons)
         {
             button.interactable = false;
@@ -137,6 +140,58 @@ public class TicTacToe : MonoBehaviour
                 winText.text = "Draw";
                 EndGame();
             }
+        }
+    }
+
+    void UpdateWinSquares()
+    {
+        if (squareValues[0] + squareValues[1] + squareValues[2] == (int)playerTurn * 3)
+        {
+            gameButtons[0].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[1].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[2].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+        }
+        if (squareValues[3] + squareValues[4] + squareValues[5] == (int)playerTurn * 3)
+        {
+            gameButtons[3].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[4].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[5].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+        }
+        if (squareValues[6] + squareValues[7] + squareValues[8] == (int)playerTurn * 3)
+        {
+            gameButtons[6].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[7].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[8].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+        }
+        if (squareValues[0] + squareValues[3] + squareValues[6] == (int)playerTurn * 3)
+        {
+            gameButtons[0].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[3].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[6].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+        }
+        if (squareValues[1] + squareValues[4] + squareValues[7] == (int)playerTurn * 3)
+        {
+            gameButtons[1].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[4].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[7].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+        }
+        if (squareValues[2] + squareValues[5] + squareValues[8] == (int)playerTurn * 3)
+        {
+            gameButtons[2].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[5].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[8].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+        }
+        if (squareValues[0] + squareValues[4] + squareValues[8] == (int)playerTurn * 3)
+        {
+            gameButtons[0].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[4].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[8].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+        }
+        if (squareValues[2] + squareValues[4] + squareValues[6] == (int)playerTurn * 3)
+        {
+            gameButtons[2].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[4].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
+            gameButtons[6].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
         }
     }
 }
