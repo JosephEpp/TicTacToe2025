@@ -22,6 +22,11 @@ public class TicTacToe : MonoBehaviour
     PlayerTurn playerTurn;
 
     int winner;
+
+    // Audio
+    [SerializeField] AudioSource buttonAudio, voiceAudio;
+
+    [SerializeField] AudioClip buttonPress, startVoice, xwins, owins, draw;
     
     // Start is called before the first frame update
     void Start()
@@ -59,6 +64,9 @@ public class TicTacToe : MonoBehaviour
 
         winner = 0;
         winText.text = "";
+
+        voiceAudio.clip = startVoice;
+        voiceAudio.Play();
     }
 
     void EndGame()
@@ -99,6 +107,8 @@ public class TicTacToe : MonoBehaviour
                 playerTurn = PlayerTurn.Player1;
             }
             gameButtons[index].interactable = false;
+            buttonAudio.clip = buttonPress;
+            buttonAudio.Play();
         }
     }
 
@@ -120,10 +130,14 @@ public class TicTacToe : MonoBehaviour
             if (winner == (int)PlayerTurn.Player1)
             {
                 winText.text = "X Wins";
+                voiceAudio.clip = xwins;
+                voiceAudio.Play();
             }
             else
             {
                 winText.text = "O Wins";
+                voiceAudio.clip = owins;
+                voiceAudio.Play();
             }
 
             EndGame();
@@ -143,6 +157,8 @@ public class TicTacToe : MonoBehaviour
             if (tie)
             {
                 winText.text = "Draw";
+                voiceAudio.clip = draw;
+                voiceAudio.Play();
                 EndGame();
             }
         }
