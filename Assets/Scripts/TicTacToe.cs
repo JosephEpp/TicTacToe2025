@@ -38,7 +38,7 @@ public class TicTacToe : MonoBehaviour
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            Application.Quit();
+            ExitGame();
         }
     }
 
@@ -71,6 +71,11 @@ public class TicTacToe : MonoBehaviour
         }
 
         startButton.interactable = true;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     // Try to select a square for the current player
