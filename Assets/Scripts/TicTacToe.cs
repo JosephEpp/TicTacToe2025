@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -27,6 +28,8 @@ public class TicTacToe : MonoBehaviour
     [SerializeField] AudioSource buttonAudio, voiceAudio;
 
     [SerializeField] AudioClip buttonPress, startVoice, xwins, owins, draw;
+
+    [SerializeField] AudioMixer mixer;
     
     // Start is called before the first frame update
     void Start()
@@ -214,5 +217,20 @@ public class TicTacToe : MonoBehaviour
             gameButtons[4].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
             gameButtons[6].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
         }
+    }
+
+    public void ChangeMasterVolume(float volume)
+    {
+        mixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 40);
+    }
+
+    public void ChangeSFXVolume(float volume)
+    {
+        mixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 40);
+    }
+
+    public void ChangeMusicVolume(float volume)
+    {
+        mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 40);
     }
 }
