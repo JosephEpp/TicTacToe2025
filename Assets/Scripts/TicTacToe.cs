@@ -8,8 +8,9 @@ public class TicTacToe : MonoBehaviour
 {
     // UI elements
     [SerializeField] Button[] gameButtons;
-    [SerializeField] Button startButton;
+    [SerializeField] Button startButton, aiButton;
     [SerializeField] TMP_Text winText;
+    [SerializeField] GameObject volumePanel;
 
     // Variables
     int[] squareValues;
@@ -38,6 +39,7 @@ public class TicTacToe : MonoBehaviour
         {
             button.interactable = false;
         }
+        aiButton.interactable = false;
         squareValues = new int[9];
     }
 
@@ -61,6 +63,7 @@ public class TicTacToe : MonoBehaviour
             squareValues[i] = 0;
         }
 
+        aiButton.interactable = true;
         startButton.interactable = false;
 
         playerTurn = PlayerTurn.Player1;
@@ -81,6 +84,7 @@ public class TicTacToe : MonoBehaviour
             button.interactable = false;
         }
 
+        aiButton.interactable = false;
         startButton.interactable = true;
     }
 
@@ -113,6 +117,11 @@ public class TicTacToe : MonoBehaviour
             buttonAudio.clip = buttonPress;
             buttonAudio.Play();
         }
+    }
+
+    public void ReadBoard(ref int[] values)
+    {
+        squareValues.CopyTo(values, 0);
     }
 
     void CheckForWin()
@@ -217,6 +226,11 @@ public class TicTacToe : MonoBehaviour
             gameButtons[4].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
             gameButtons[6].GetComponentInChildren<TMP_Text>().color = new Color(1, 1, 1);
         }
+    }
+
+    public void ToggleVolumePanel()
+    {
+        volumePanel.SetActive(!volumePanel.activeSelf);
     }
 
     public void ChangeMasterVolume(float volume)
