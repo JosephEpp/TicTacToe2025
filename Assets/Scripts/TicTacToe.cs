@@ -15,13 +15,8 @@ public class TicTacToe : MonoBehaviour
     // Variables
     int[] squareValues;
 
-    enum PlayerTurn
-    {
-        Player1 = 1,
-        Player2 = 4
-    }
-
     PlayerTurn playerTurn;
+    PlayerTurn playerOpponent;
 
     int winner;
 
@@ -67,6 +62,7 @@ public class TicTacToe : MonoBehaviour
         startButton.interactable = false;
 
         playerTurn = PlayerTurn.Player1;
+        playerOpponent = PlayerTurn.Player2;
 
         winner = 0;
         winText.text = "";
@@ -106,12 +102,14 @@ public class TicTacToe : MonoBehaviour
                 gameButtons[index].GetComponentInChildren<TMP_Text>().text = "X";
                 CheckForWin();
                 playerTurn = PlayerTurn.Player2;
+                playerOpponent = PlayerTurn.Player1;
             }
             else
             {
                 gameButtons[index].GetComponentInChildren<TMP_Text>().text = "O";
                 CheckForWin();
                 playerTurn = PlayerTurn.Player1;
+                playerOpponent = PlayerTurn.Player2;
             }
             gameButtons[index].interactable = false;
             buttonAudio.clip = buttonPress;
@@ -122,6 +120,11 @@ public class TicTacToe : MonoBehaviour
     public void ReadBoard(ref int[] values)
     {
         squareValues.CopyTo(values, 0);
+    }
+
+    public PlayerTurn GetPlayer()
+    {
+        return playerTurn;
     }
 
     void CheckForWin()
@@ -247,4 +250,10 @@ public class TicTacToe : MonoBehaviour
     {
         mixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 40);
     }
+}
+
+public enum PlayerTurn
+{
+    Player1 = 1,
+    Player2 = 4
 }
