@@ -16,7 +16,6 @@ public class TicTacToe : MonoBehaviour
     int[] squareValues;
 
     PlayerTurn playerTurn;
-    PlayerTurn playerOpponent;
 
     int winner;
 
@@ -62,7 +61,6 @@ public class TicTacToe : MonoBehaviour
         startButton.interactable = false;
 
         playerTurn = PlayerTurn.Player1;
-        playerOpponent = PlayerTurn.Player2;
 
         winner = 0;
         winText.text = "";
@@ -102,14 +100,12 @@ public class TicTacToe : MonoBehaviour
                 gameButtons[index].GetComponentInChildren<TMP_Text>().text = "X";
                 CheckForWin();
                 playerTurn = PlayerTurn.Player2;
-                playerOpponent = PlayerTurn.Player1;
             }
             else
             {
                 gameButtons[index].GetComponentInChildren<TMP_Text>().text = "O";
                 CheckForWin();
                 playerTurn = PlayerTurn.Player1;
-                playerOpponent = PlayerTurn.Player2;
             }
             gameButtons[index].interactable = false;
             buttonAudio.clip = buttonPress;
