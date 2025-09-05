@@ -46,23 +46,27 @@ public class AIStep : MonoBehaviour
     {
         // Read the board
         gameScript.ReadBoard(ref squareValues);
-        //openSquares.Clear();
 
-        // Make a list of all indexes for the open squares
-        // for (int i = 0; i < squareValues.Length; i++)
-        // {
-        //     if (squareValues[i] == 0)
-        //     {
-        //         openSquares.Add(i);
-        //     }
-        // }
+        switch (aiLevel)
+        {
+            case AILevel.Level1:
+                SelectRandomSquare();
+                break;
+            case AILevel.Level2:
+                //Do something here
+                break;
+        }
 
-        // Choose a random open square
+        playerTurn = gameScript.GetPlayer();
 
-        //Select a random square
-        SelectRandomSquare();
-
-        //gameScript.SelectSquare(openSquares[Random.Range(0, openSquares.Count)]);
+        if (playerTurn == PlayerTurn.Player1)
+        {
+            playerOpponent = PlayerTurn.Player2;
+        }
+        else
+        {
+            playerOpponent = PlayerTurn.Player1;
+        }
     }
 
     private void SelectRandomSquare()
@@ -81,6 +85,20 @@ public class AIStep : MonoBehaviour
                 validSquare = true;
             }
         }
+
+        //ALT: Method using a list of open squares
+        //openSquares.Clear();
+
+        // Make a list of all indexes for the open squares
+        // for (int i = 0; i < squareValues.Length; i++)
+        // {
+        //     if (squareValues[i] == 0)
+        //     {
+        //         openSquares.Add(i);
+        //     }
+        // }
+
+        //gameScript.SelectSquare(openSquares[Random.Range(0, openSquares.Count)]);
     }
 
     private void CheckForPossibleWin()
